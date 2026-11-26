@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    tools {
+        jdk 'JDK'
+        maven 'Maven'
+    }
+
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git 'https://github.com/maniA2413/project1'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                sh 'mvn clean package -DskipTests'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build Successful!'
+        }
+
+        failure {
+            echo 'Build Failed!'
+        }
+    }
+}
