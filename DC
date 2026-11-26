@@ -1,0 +1,12 @@
+services:
+  webapp:
+    build: .
+    image: myapp:latest
+    container_name: mycontainer
+    ports:
+      - "8082:8080"
+    restart: always
+
+
+docker compose up --build -d
+docker ps
