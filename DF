@@ -14,3 +14,28 @@ COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
 EXPOSE 8080
 
 CMD ["catalina.sh", "run"]
+
+
+
+
+
+
+
+cmds::
+
+
+docker build -t foodordering:latest .
+
+docker images
+
+docker login
+
+docker tag foodordering:latest mani586/foodordering:v1
+
+docker push mani586/foodordering:v1
+
+docker pull mani586/foodordering:v1
+
+docker run -d -p 8082:8080 --name foodapp mani586/foodordering:v1
+
+docker ps
